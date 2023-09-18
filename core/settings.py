@@ -31,20 +31,30 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-PROJECT_APPS=[
+PROJECT_APPS = [
 
 ]
 
-THIRD_PARTY_APPS=[
+THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
     'ckeditor',
-    'ckedit_uploader'
+    'ckeditor_uploader'
 ]
 
-INSTALLED_APPS=DJANGO_APPS+PROJECT_APPS+THIRD_PARTY_APPS
+INSTALLED_APPS = DJANGO_APPS+PROJECT_APPS+THIRD_PARTY_APPS
+
+# CKEditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'autoParagraph': False
+    }
+}
+CKEDITOR_UPLOAD_PATH="/media/"
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,4 +140,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if not DEBUG:
-    ALLOWED_HOSTS=env.list('ALLOWED_HOST_DEPLOY')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOST_DEPLOY')
